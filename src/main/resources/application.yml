@@ -1,0 +1,22 @@
+
+# 服务名称
+spring:
+  application:
+    name: learn-arithmetic
+      # mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://beacon1:3306/learn-arth?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: zhangzeyuan123!
+server:
+  port: 40001
+mybatis-plus:
+  type-aliases-package: com.zhangzeyuan.learnarithmetic.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+  global-config:
+    db-config:
+      update-strategy: not_null #设置更新策略：只更新非空字段
+      id-type: assign_uuid
