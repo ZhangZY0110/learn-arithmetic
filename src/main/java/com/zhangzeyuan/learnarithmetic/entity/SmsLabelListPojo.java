@@ -9,7 +9,7 @@ import lombok.ToString;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJson;
 @Data
 @TableName("sms_label_list")
-public class SmsLabelList {
+public class SmsLabelListPojo {
 
   private String  id;
   private String parentId;

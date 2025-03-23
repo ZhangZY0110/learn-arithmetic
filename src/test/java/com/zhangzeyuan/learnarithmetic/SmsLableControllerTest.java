@@ -1,7 +1,7 @@
 package com.zhangzeyuan.learnarithmetic;
 
 import com.zhangzeyuan.learnarithmetic.controller.SmsLableController;
-import com.zhangzeyuan.learnarithmetic.vo.SmsLabelListVo;
+import com.zhangzeyuan.learnarithmetic.vo.SmsLabelListPojoVo;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ class SmsLableControllerTest {
     SmsLableController smsLableController;
     @Test
     void tree() {
-        SmsLabelListVo tree = smsLableController.tree("1000000000000000001");
+        SmsLabelListPojoVo tree = smsLableController.tree("1000000000000000001");
         //得到了当前父id的素有子和孙节点
         System.out.println(tree.toString());
     }

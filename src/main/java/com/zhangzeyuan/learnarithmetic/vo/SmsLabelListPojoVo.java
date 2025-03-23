@@ -10,11 +10,11 @@ import java.util.ArrayList;
  * @Version 1.0
  */
 @Data
-public class SmsLabelListVo {
+public class SmsLabelListPojoVo {
     private String id;
     private String parentId;
     private Integer status;
     private String title;
     private String description;
-    private ArrayList<SmsLabelListVo> children;
+    private ArrayList<SmsLabelListPojoVo> children;
 }

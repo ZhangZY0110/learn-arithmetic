@@ -1,8 +1,7 @@
 package com.zhangzeyuan.learnarithmetic.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zhangzeyuan.learnarithmetic.entity.SmsLabelList;
-import com.zhangzeyuan.learnarithmetic.vo.SmsLabelListVo;
+import com.zhangzeyuan.learnarithmetic.entity.SmsLabelListPojo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -13,6 +12,6 @@ import java.util.List;
  * @Version 1.0
  */
 
-public interface SmsLabelListMapper extends BaseMapper<SmsLabelList> {
-     List<SmsLabelList> tree(@Param("parentId") String parentId);
+public interface SmsLabelListPojoMapper extends BaseMapper<SmsLabelListPojo> {
+     List<SmsLabelListPojo> tree(@Param("parentId") String parentId);
 }

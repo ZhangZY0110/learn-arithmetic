@@ -1,8 +1,8 @@
 package com.zhangzeyuan.learnarithmetic.controller;
 
-import com.zhangzeyuan.learnarithmetic.entity.SmsLabelList;
-import com.zhangzeyuan.learnarithmetic.mapper.SmsLabelListMapper;
-import com.zhangzeyuan.learnarithmetic.vo.SmsLabelListVo;
+import com.zhangzeyuan.learnarithmetic.entity.SmsLabelListPojo;
+import com.zhangzeyuan.learnarithmetic.mapper.SmsLabelListPojoMapper;
+import com.zhangzeyuan.learnarithmetic.vo.SmsLabelListPojoVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -22,16 +22,16 @@ import java.util.List;
 @RestController("/sms")
 public class SmsLableController {
     @Autowired
-    private SmsLabelListMapper smsLabelListMapper;
+    private SmsLabelListPojoMapper smsLabelListMapper;
     @RequestMapping(method = RequestMethod.GET,value = "/tree/{parentId}")
-    public SmsLabelListVo tree(String parentId){
-        List<SmsLabelList> tree = smsLabelListMapper.tree(parentId);
+    public SmsLabelListPojoVo tree(String parentId){
+        List<SmsLabelListPojo> tree = smsLabelListMapper.tree(parentId);
         //1. 封装第一层，
-        SmsLabelListVo vo = new SmsLabelListVo();
-        Iterator<SmsLabelList> iterator = tree.iterator();
+        SmsLabelListPojoVo vo = new SmsLabelListPojoVo();
+        Iterator<SmsLabelListPojo> iterator = tree.iterator();
 
         while (iterator.hasNext()) {
-            SmsLabelList next = iterator.next();
+            SmsLabelListPojo next = iterator.next();
             //传入的父id等等于id 设置本值
             if (StringUtils.hasText(parentId) && parentId.trim().equals(next.getId())){
                 //执行封装
@@ -55,21 +55,21 @@ public class SmsLableController {
      * @param parentId 这个是本次要比对的父id
      * @param vo 这个vo对象，第一次是最大的那个vo，setChild 的时候是第一层，孙子对象一定要传入的是父对象，而不是爷爷对象
      */
-    private void setChildLabel(List<SmsLabelList> tree,String parentId,SmsLabelListVo vo){
-        ArrayList<SmsLabelList> list = new ArrayList();
+    private void setChildLabel(List<SmsLabelListPojo> tree,String parentId,SmsLabelListPojoVo vo){
+        ArrayList<SmsLabelListPojo> list = new ArrayList();
         list.addAll(tree);
         System.out.println("传入的 pid："+parentId);
         //2.继续封装下一层
         //创建第一层子list ------- SON ---------->>、
-        ArrayList<SmsLabelListVo> sons = new ArrayList<>();
-        for (Iterator<SmsLabelList> it = list.iterator(); it.hasNext();){
-            SmsLabelList next = it.next();
+        ArrayList<SmsLabelListPojoVo> sons = new ArrayList<>();
+        for (Iterator<SmsLabelListPojo> it = list.iterator(); it.hasNext();){
+            SmsLabelListPojo next = it.next();
             //判断第一层子 id 等于传进来的 parentId\
             // System.out.printf("next.getParentId():%s%n",next.getParentId());
             // System.out.printf("parentId:%s%n",parentId);
             if ((next.getParentId()).equals(parentId)){
                 //执行第一层子插入 --------------- init obj
-                SmsLabelListVo sonVo = new SmsLabelListVo();
+                SmsLabelListPojoVo sonVo = new SmsLabelListPojoVo();
                 //------------------copy
                 BeanUtils.copyProperties(next,sonVo);
                 // 执行插入 -------------addList
