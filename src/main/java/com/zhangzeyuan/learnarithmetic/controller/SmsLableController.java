@@ -53,7 +53,7 @@ public class SmsLableController {
      * 这个是一个递归方法
      * @param tree 这个tree永远是一个， 但是在方法内部的实现使用了数组拷贝 ，不然会抛 ConcurrentModificationException
      * @param parentId 这个是本次要比对的父id
-     * @param vo 这个vo对象，第一次是最大的那个vo，setChild 的时候是第一层，
+     * @param vo 这个vo对象，第一次是最大的那个vo，setChild 的时候是第一层，孙子对象一定要传入的是父对象，而不是爷爷对象
      */
     private void setChildLabel(List<SmsLabelList> tree,String parentId,SmsLabelListVo vo){
         ArrayList<SmsLabelList> list = new ArrayList();
